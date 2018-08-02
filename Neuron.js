@@ -17,15 +17,16 @@ class Neuron {
 
     activate(inputs, bias) {
         if (this.num_inputs != inputs.length + 1) {
-            throw new Exception("number of weights and number of inputs must match.");
+            console.error("number of weights and number of inputs must match.");
+            return;
         }
         let output = 0.0;
         for (let i = 0; i < this.num_inputs - 1; i++) {
-            output += inputs[i] * this.weights[i]
+            output += inputs[i] * this.weights[i];
         }
-        output += bias * this.weights[-1]
+        output += bias * this.weights[this.weights.length - 1];
 
-        return output
+        return output;
     }
 }
 

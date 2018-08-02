@@ -1,4 +1,5 @@
 const NeuronLayer = require('./NeuralLayer');
+const Neuron = require('./Neuron');
 
 class NeuralNet {
     constructor(num_inputs, num_outputs, num_hidden, neurons_per_hidden) {
@@ -24,8 +25,10 @@ class NeuralNet {
         }
     }
 
-    activate(inputs, bias, activationFunction) { 
-        return 
+    activate(inputs, bias, activationFunction) {
+        return this.layers.reduce((x, y) => {
+            return y.activate(x, bias, activationFunction);
+        }, inputs, null);
     }
 }
 
